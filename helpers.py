@@ -1,16 +1,14 @@
 import random
 import string
+import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import RegisterPage, LoginPage, MainPage
 from urls import BASE_URL, REGISTER_ENDPOINT, LOGIN_ENDPOINT
 
 def generate_email():
-    name = "test"
-    surname = "testov"
-    cohort = "1999"
-    digits = f"{random.randint(100, 999)}"
-    return f"{name}_{surname}_{cohort}_{digits}@yandex.ru"
+    timestamp = str(int(time.time() * 1000))
+    return f"test_testov_1999_{timestamp}@yandex.ru"
 
 def generate_password():
     chars = string.ascii_letters + string.digits
