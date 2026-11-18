@@ -18,3 +18,4 @@ def registered_user(driver):
     password = generate_password()
     register_user(driver, email, password)
     return email, password
+

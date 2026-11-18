@@ -40,3 +40,4 @@ class TestPersonalAccount:
         driver.find_element(*PersonalAccountPage.LOGOUT_BUTTON).click()
         
         assert WebDriverWait(driver, 10).until(EC.url_contains("/login"))
+

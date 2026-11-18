@@ -34,3 +34,4 @@ class PersonalAccountPage:
     LOGOUT_BUTTON = (By.XPATH, "//button[contains(text(), 'Выход')]")
     # "Профиль"
     PROFILE_HEADER = (By.XPATH, "//*[text()='Профиль']")
+

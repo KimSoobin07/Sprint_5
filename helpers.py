@@ -34,3 +34,4 @@ def login_user(driver, email, password):
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(MainPage.ORDER_BUTTON)
     )
+

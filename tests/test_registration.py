@@ -31,3 +31,4 @@ class TestRegistration:
         assert WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located(RegisterPage.ERROR_PASSWORD)
         )
+
