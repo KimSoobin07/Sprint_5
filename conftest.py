@@ -1,13 +1,20 @@
 import pytest
 from selenium import webdriver
+from helpers import generate_email, generate_password, register_user
+from urls import BASE_URL
 
 @pytest.fixture
 def driver():
-    # Запускаем браузер Chrome
     browser = webdriver.Chrome()
-    browser.maximize_window()  # Разворачиваем на весь экран
-    browser.get("https://stellarburgers.education-services.ru/")  # Открываем сайт
-    
-    yield browser  # Отдаем браузер тесту. Всё, что ниже, выполнится ПОСЛЕ теста.
-    
-    browser.quit()  # Обязательно закрываем браузер
+    browser.maximize_window()
+    browser.get(BASE_URL)
+    yield browser
+    browser.quit()
+
+@pytest.fixture
+def registered_user(driver):
+    """Создает нового пользователя и возвращает его email и пароль."""
+    email = generate_email()
+    password = generate_password()
+    register_user(driver, email, password)
+    return email, password
