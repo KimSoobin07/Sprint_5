@@ -1,30 +1,36 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import MainPage
-
-BASE_URL = "https://stellarburgers.education-services.ru/"
+from urls import BASE_URL
 
 class TestConstructor:
-
     def test_switch_to_sauces(self, driver):
         driver.get(BASE_URL)
-        # Переключение на Соусы
         driver.find_element(*MainPage.SAUCES_TAB).click()
-        # Проверяем, что появился элемент из раздела соусов (например, заголовок)
-        # В данном приложении активный таб просто меняет цвет, поэтому проверим, что клик прошел
-        assert driver.find_element(*MainPage.SAUCES_TAB).is_displayed()
+        
+        # Проверяем, что таб Соусы получил класс активного таба
+        assert WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(MainPage.ACTIVE_SAUCES_TAB)
+        )
 
     def test_switch_to_fillings(self, driver):
         driver.get(BASE_URL)
-        # Переключение на Начинки
         driver.find_element(*MainPage.FILLINGS_TAB).click()
-        assert driver.find_element(*MainPage.FILLINGS_TAB).is_displayed()
+        
+        assert WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(MainPage.ACTIVE_FILLINGS_TAB)
+        )
 
     def test_switch_to_buns(self, driver):
         driver.get(BASE_URL)
-        # Сначала уходим на Соусы, чтобы проверить возврат на Булки
+        # Сначала переключаемся на Соусы, чтобы проверить смену класса обратно на Булки
         driver.find_element(*MainPage.SAUCES_TAB).click()
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(MainPage.ACTIVE_SAUCES_TAB)
+        )
         
-        # Возвращаемся на Булки
         driver.find_element(*MainPage.BUNS_TAB).click()
-        assert driver.find_element(*MainPage.BUNS_TAB).is_displayed()
+        
+        assert WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(MainPage.ACTIVE_BUNS_TAB)
+        )

@@ -11,6 +11,9 @@ class MainPage:
     BUNS_TAB = (By.XPATH, "//span[text()='Булки']")                         # Таб «Булки»
     SAUCES_TAB = (By.XPATH, "//span[text()='Соусы']")                       # Таб «Соусы»
     FILLINGS_TAB = (By.XPATH, "//span[text()='Начинки']")                   # Таб «Начинки»                  # Таб «Начинки»
+    ACTIVE_BUNS_TAB = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current') and .//span[text()='Булки']]")
+    ACTIVE_SAUCES_TAB = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current') and .//span[text()='Соусы']]")
+    ACTIVE_FILLINGS_TAB = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current') and .//span[text()='Начинки']]")
 
 class RegisterPage:
     NAME_INPUT = (By.XPATH, "//label[text()='Имя']/following-sibling::input")    # Поле «Имя»
